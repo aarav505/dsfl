@@ -4,7 +4,7 @@ from utils import generate_token
 
 auth = Blueprint('auth', __name__)
 
-@auth.route("/signup", methods=["POST"])
+@auth.route("/api/signup", methods=["POST"])
 def signup():
     data = request.get_json()
     
@@ -32,7 +32,7 @@ def signup():
         db.session.rollback()
         return jsonify({"message": "Error creating user", "error": str(e)}), 500
 
-@auth.route("/login", methods=["POST"])
+@auth.route("/api/login", methods=["POST"])
 def login():
     data = request.get_json()
     email = data.get("email")

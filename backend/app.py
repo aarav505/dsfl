@@ -9,7 +9,7 @@ from sqlalchemy.exc import IntegrityError
 import os
 import csv
 
-app = Flask(__name__, static_folder='../frontend/frontend/build')
+app = Flask(__name__, static_folder='../build')
 app.config.from_object(Config)
 
 # Configure CORS with specific origin and credentials
@@ -27,7 +27,8 @@ def log_request():
     print(f"Method: {request.method}")
     print(f"URL: {request.url}")
     print(f"Headers: {dict(request.headers)}")
-    print(f"Data: {request.get_data()}")
+    if request.method in ['POST', 'PUT']:
+        print(f"Data: {request.get_data()}")
     print("======================\n")
 
 # Error handling
@@ -57,22 +58,6 @@ def get_players():
             return jsonify(players)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-# Serve React App's index.html for the root route
-@app.route('/')
-def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
-
-# Removing duplicate route since we already have /api/players defined above
-
-# Catch-all route: serves index.html for all other paths not handled by API routes
-@app.route('/<path:path>')
-def serve_react_app(path):
-    # This part handles serving direct static files (like /static/js/main.chunk.js)
-    if os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    # For any other path, return 404 since we want React Router to handle client-side routing
-    return jsonify({"error": "Not Found"}), 404
 
 # TEST Protected route
 @app.route("/api/protected")

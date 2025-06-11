@@ -15,14 +15,16 @@ This is a full-stack application with separate frontend and backend components.
    ```bash
    cd backend
    ```
-2. Install dependencies:
+2. Install Python dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Start the server:
+3. Start the Flask server:
    ```bash
    python app.py
    ```
+
+The backend server will run on `http://localhost:5001` by default.
 
 ### Frontend
 1. Navigate to the frontend directory:
@@ -37,6 +39,14 @@ This is a full-stack application with separate frontend and backend components.
    ```bash
    npm start
    ```
+
+The frontend will run on `http://localhost:3000` and proxy API requests to the backend.
+
+## Important Notes
+
+- **Start the backend server first** before starting the frontend to avoid proxy errors
+- Ensure the backend is running on port 5001 before the frontend attempts to connect
+- If you encounter proxy errors, verify that the backend server is running and accessible
 
 ## Technologies Used
 

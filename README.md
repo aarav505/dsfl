@@ -17,11 +17,11 @@ This is a full-stack application with separate frontend and backend components.
    ```
 2. Install dependencies:
    ```bash
-   npm install
+   pip install -r requirements.txt
    ```
 3. Start the server:
    ```bash
-   npm start
+   python app.py
    ```
 
 ### Frontend
@@ -41,5 +41,5 @@ This is a full-stack application with separate frontend and backend components.
 ## Technologies Used
 
 - Frontend: React.js
-- Backend: Node.js with Express
-- Database: SQLite 
+- Backend: Python with Flask
+- Database: SQLite
